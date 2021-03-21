@@ -16,39 +16,117 @@ function mixAndMatch(){
     var pickedChoice = Math.floor(Math.random()* 4);
     /*console.log(pickedChoice);*/
     /*numbers choice*/
-    if (pickedChoice === 0){
+    if (pickedChoice === 0 && numbersQuestion === 'Yes'){
       var answere = Math.floor(Math.random()* 10)
       final[i] = answere;
       
     }
+    else if(pickedChoice === 0 && numbersQuestion === 'No'){
+      if
+      (lowerCaseAnswere === 'Yes'){var answere = Math.floor(Math.random()* 26)
+        final[i] = letLower[answere];} 
+        else if 
+        (upperCaseAnswere === 'Yes'){
+          var answere = Math.floor(Math.random()* 26)
+          final[i] = letUpper[answere];}
+          else if( special=== 'Yes'){
+            var answere = Math.floor(Math.random()* 33)
+            final[i] = specialChar[answere];
+    }
+  }
+    
   /*lower case*/
-    else if(pickedChoice === 1){
+    else if(pickedChoice === 1 && lowerCaseAnswere === 'Yes'){
       var answere = Math.floor(Math.random()* 26)
       final[i] = letLower[answere];
     }
+
+    else if(pickedChoice === 1 && lowerCaseAnswere === 'No'){
+
+      if (numbersQuestion === 'Yes'){
+        var answere = Math.floor(Math.random()* 10)
+        final[i] = answere;}
+       else if 
+        (upperCaseAnswere === 'Yes'){
+          var answere = Math.floor(Math.random()* 26)
+          final[i] = letUpper[answere];}
+          else if( special=== 'Yes'){
+            var answere = Math.floor(Math.random()* 33)
+            final[i] = specialChar[answere];
+    }
+    }
+
+
+
+    
     /*upper case*/
-    else if(pickedChoice ===2){
+    else if(pickedChoice ===2 && upperCaseAnswere === 'Yes'){
       var answere = Math.floor(Math.random()* 26)
       final[i] = letUpper[answere];
     }
+    else if(pickedChoice === 2 && upperCaseAnswere === 'No'){
+
+      if
+      (lowerCaseAnswere === 'Yes'){var answere = Math.floor(Math.random()* 26)
+        final[i] = letLower[answere];} 
+       else if (numbersQuestion === 'Yes'){
+        var answere = Math.floor(Math.random()* 10)
+        final[i] = answere;}
+        
+          else if( special=== 'Yes'){
+            var answere = Math.floor(Math.random()* 33)
+            final[i] = specialChar[answere];
+          }
+
+    }
+
+
+
+
+
+
+
+
     /*special characters*/
-    else if(pickedChoice ===3){
+    else if(pickedChoice ===3 && special=== 'Yes'){
       var answere = Math.floor(Math.random()* 33)
       final[i] = specialChar[answere];
       console.log[answere];
+    }
+      else if(pickedChoice === 3 && special === 'No'){
+
+        if
+        (lowerCaseAnswere === 'Yes'){var answere = Math.floor(Math.random()* 26)
+          final[i] = letLower[answere];} 
+         else if ( numbersQuestion === 'Yes'){
+          var answere = Math.floor(Math.random()* 10)
+          final[i] = answere;}
+          else if 
+          (upperCaseAnswere === 'Yes'){
+            var answere = Math.floor(Math.random()* 26)
+            final[i] = letUpper[answere];}
+          }
+      else{
       
-  }
-  else{console.log("what the fuck");}
+      
+      console.log("fail" + pickedChoice)
+  };
+    
 } 
+console.log(numbersQuestion);
+console.log(upperCaseAnswere);
+console.log(lowerCaseAnswere);
+console.log(special);
 };
 
-
+/*question stage*/
 function generatePassword(){
 window.alert("This is a password generator");
 /*length of your password section*/
 lengthOfCharacter = window.prompt("please your length of character from 8 to no more than 128. please answere in numeric form (1,2,3)" );
 if(lengthOfCharacter < 8 || lengthOfCharacter > 128){
   alert("pick again");
+  window.prompt("please your length of character from 8 to no more than 128. please answere in numeric form (1,2,3)" );
 }
 else if(lengthOfCharacter >= 8 && lengthOfCharacter <= 128){
 alert("good choice");
@@ -78,7 +156,7 @@ function lowerCase(){
   }
   
   else if(lowerCaseAnswere === null){
-  alert("That was not an acceptable answere");
+  alert("That was not an acceptable answere, cannot leave blank");
   lowerCase();
   
 }
@@ -86,11 +164,11 @@ function lowerCase(){
   alert("That was not an acceptable answere");
   lowerCase();
 }
-
+  
 };
 /*window.prompt("would you like uppercase letters?");*/
 function UpperCase(){
-  upperCaseAnswere = window.prompt("would you like lowercase letters? Yes or No");
+  upperCaseAnswere = window.prompt("would you like uppercase letters? Yes or No");
   if(upperCaseAnswere === 'Yes'){
     alert(upperCaseAnswere);
     choices ++;
@@ -105,7 +183,7 @@ function UpperCase(){
   }
   
   else if(upperCaseAnswere === null){
-  alert("That was not an acceptable answere");
+  alert("That was not an acceptable answere cannot leave blank");
   UpperCase();
   
 }
@@ -135,7 +213,7 @@ function NumbersGame(){
   }
   
   else if(numbersQuestion === null){
-  alert("That was not an acceptable answere");
+  alert("That was not an acceptable answere cannot leave blank");
   NumbersGame();
   
 }
@@ -157,12 +235,16 @@ function SpecialChar(){
     
   }
   else if(special === 'No'){
+    if(numbersQuestion === 'No' && lowerCaseAnswere === 'No' && upperCaseAnswere ==='No'){
+      alert("you must pick at least one category");
+      SpecialChar();
+    }
     alert(special);
     
   }
   
   else if(special === null){
-  alert("That was not an acceptable answere");
+  alert("That was not an acceptable answere cannot leave blank");
   SpecialChar();
   
 }
@@ -170,6 +252,7 @@ function SpecialChar(){
   alert("That was not an acceptable answere");
   SpecialChar();
 }
+
 
 mixAndMatch();
 };
@@ -183,71 +266,10 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  final =(final.join(' '));
   passwordText.value = final;
 
 }
 
 // Add event listener to generate button, big red generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*function mixAndMatch(){
-  /*console.log(lengthOfCharacter);
-  console.log(lowerCaseAnswere);
-  console.log(upperCaseAnswere);
-  console.log(numbersQuestion);
-  console.log(special);
-  console.log(choices);*/
-
-  
-  /*absolute min of choice for other options*/
-  /*lengthOfCharacter = lengthOfCharacter -= choices;
-  /*console.log(lengthOfCharacter);*/
-  /*randoLength = Math.floor((Math.random() * ((lengthOfCharacter - 1) + 1)) + 1);
-  console.log(randoLength);
-
-  
-  /*part 1 numbers*/
-  /*for(var i = 0; i < randoLength; i ++){
-  var answere = Math.floor(Math.random()* 10)
-  /*console.log(answere);*/
-  /*final[i] = answere;
-  
-}
-  lengthOfCharacter = lengthOfCharacter -= randoLength;
-  console.log(final);
-  /*part 2 lower letters*/
-  /*for(var i = 0; i < lengthOfCharacter; i ++){
-  var letter = Math.floor(Math.random()* 26);
-  var pickedLetter = letLower[letter];
-  letters[i] = pickedLetter;
-  console.log(letter);
-  /*console.log(pickedLetter);*/
-  
-/*}
-console.log(letters);
-
-/*part 3 upper letters*/
-/*for(var i = 0; i < lengthOfCharacter; i ++){
-  var letter = Math.floor(Math.random()* 26);
-  var pickedLetter = letLower[letter];
-  letters[i] = pickedLetter;
-  console.log(letter);
-  /*console.log(pickedLetter);*/
-  
-/*}
-};*/
