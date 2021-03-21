@@ -7,43 +7,39 @@ var special;
 var choices = 0;
 var final = [];
 var letLower = ["a" , "b" , "c" , "d" , "e" , "f" , "g" , "h" , "i" , "j" , "k" , "l" , "m" , "n" , "o" , "p" , "q" , "r" , "s" , "t" , "u" , "v" , "w" , "x" , "y" , "z"];
+var letUpper = ["A" , "B" , "C" , "D" , "E" , "F" , "G" , "H" , "I" , "J" , "K" , "L" , "M" , "N" , "O" , "P" , "Q" , "R" , "S" , "T" , "U" , "V" , "W" , "X" , "Y" , "Z"];
+var specialChar = ["\u0020" , "\u0021" , "\u0022" , "\u0023" , "\u0024" , "\u0025" , "\u0026" , "\u0027" , "\u0028" , "\u0029" , "\u002A" , "\u002B" , "\u002C" , "\u002D" , "\u002E" , "\u002F" , "\u003A" , "\u003B" , "\u003C" , "\u003D" , "\u003E" , "\u003F" , "\u0040" , "\u005B" , "\u005C" , "\u005D" , "\u005E" ,  "\u005F" , "\u0060" , "\u007B" , "\u007C" , "\u007D", "\u007E"];
 var letters = [];
 function mixAndMatch(){
-  /*console.log(lengthOfCharacter);
-  console.log(lowerCaseAnswere);
-  console.log(upperCaseAnswere);
-  console.log(numbersQuestion);
-  console.log(special);
-  console.log(choices);*/
-
   
-  /*absolute min of choice for other options*/
-  lengthOfCharacter = lengthOfCharacter -= choices;
-  /*console.log(lengthOfCharacter);*/
-  randoLength = Math.floor((Math.random() * ((lengthOfCharacter - 1) + 1)) + 1);
-  console.log(randoLength);
-
-  
-  /*part 1 numbers*/
-  for(var i = 0; i < randoLength; i ++){
-  var answere = Math.floor(Math.random()* 10)
-  /*console.log(answere);*/
-  final[i] = answere;
-  
-}
-  lengthOfCharacter = lengthOfCharacter -= randoLength;
-  console.log(final);
-  /*part 1 letters*/
   for(var i = 0; i < lengthOfCharacter; i ++){
-  var letter = Math.floor(Math.random()* 26);
-  var pickedLetter = letLower[letter];
-  letters[i] = pickedLetter;
-  console.log(letter);
-  /*console.log(pickedLetter);*/
-  
-}
-console.log(letters);
-
+    var pickedChoice = Math.floor(Math.random()* 4);
+    /*console.log(pickedChoice);*/
+    /*numbers choice*/
+    if (pickedChoice === 0){
+      var answere = Math.floor(Math.random()* 10)
+      final[i] = answere;
+      
+    }
+  /*lower case*/
+    else if(pickedChoice === 1){
+      var answere = Math.floor(Math.random()* 26)
+      final[i] = letLower[answere];
+    }
+    /*upper case*/
+    else if(pickedChoice ===2){
+      var answere = Math.floor(Math.random()* 26)
+      final[i] = letUpper[answere];
+    }
+    /*special characters*/
+    else if(pickedChoice ===3){
+      var answere = Math.floor(Math.random()* 33)
+      final[i] = specialChar[answere];
+      console.log[answere];
+      
+  }
+  else{console.log("what the fuck");}
+} 
 };
 
 
@@ -188,9 +184,70 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = final;
 
 }
 
 // Add event listener to generate button, big red generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*function mixAndMatch(){
+  /*console.log(lengthOfCharacter);
+  console.log(lowerCaseAnswere);
+  console.log(upperCaseAnswere);
+  console.log(numbersQuestion);
+  console.log(special);
+  console.log(choices);*/
+
+  
+  /*absolute min of choice for other options*/
+  /*lengthOfCharacter = lengthOfCharacter -= choices;
+  /*console.log(lengthOfCharacter);*/
+  /*randoLength = Math.floor((Math.random() * ((lengthOfCharacter - 1) + 1)) + 1);
+  console.log(randoLength);
+
+  
+  /*part 1 numbers*/
+  /*for(var i = 0; i < randoLength; i ++){
+  var answere = Math.floor(Math.random()* 10)
+  /*console.log(answere);*/
+  /*final[i] = answere;
+  
+}
+  lengthOfCharacter = lengthOfCharacter -= randoLength;
+  console.log(final);
+  /*part 2 lower letters*/
+  /*for(var i = 0; i < lengthOfCharacter; i ++){
+  var letter = Math.floor(Math.random()* 26);
+  var pickedLetter = letLower[letter];
+  letters[i] = pickedLetter;
+  console.log(letter);
+  /*console.log(pickedLetter);*/
+  
+/*}
+console.log(letters);
+
+/*part 3 upper letters*/
+/*for(var i = 0; i < lengthOfCharacter; i ++){
+  var letter = Math.floor(Math.random()* 26);
+  var pickedLetter = letLower[letter];
+  letters[i] = pickedLetter;
+  console.log(letter);
+  /*console.log(pickedLetter);*/
+  
+/*}
+};*/
